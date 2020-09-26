@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/login.css' />
+    <link rel='stylesheet' href='/stylesheets/tabnav.css' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+ 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Add category</title>
+</head>
+<body style="background: white;">
+   <div class="dropdown">
+       <a href="/"> <button class="dropbtn"><i class="fa fa-home"></i></button></a>
+      </div>
+<div class="dropdown">
+    <button class="dropbtn">Password category</button>
+    <div class="dropdown-content">
+        <a href="/add-new-cat">Add category</a>
+        <a href="/category">View all category</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">Password Details</button>
+    <div class="dropdown-content">
+        <a href="/add-new-pass">Add new Password</a>
+        <a href="/allpassword">View all Password</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <a href="/logout" onclick="return confirm('Are you sure to logout?')""><button class="dropbtn"><i class="fa fa-sign-out"></i></button></a>
+  </div>
+   <div class="login-page">
+      <div class="form">
+        <h2>Passwor management System</h2>
+        <h3> Edit password_details </h3>
+        <% if(msg != ''){ %>
+            <div class="alert alert-success" role="alert">
+             <strong> <%= msg %></strong>
+            </div>
+            <% } %>
+            <% if(errmsg != ''){ %>
+              <div class="alert alert-danger" role="alert">
+               <strong> <%= errmsg %></strong>
+              </div>
+              <% } %>
+      <form class="login-form" action="/pass_details/edit/<%= records._id %>" method="POST">
+               
+                <div>
+                  
+                   <select class="form-control" name="password_cat">
+                     <option value="">Choose category</option>
+                     <% if(reco.length > 0){ reco.forEach(function(row){ %> 
+                       <option value="<%= row.cat_name %>"<% if(row.cat_name == records.cat_name ){ %> selected <% } %>><%= row.cat_name %></option>
+                       <% }) }%>
+                   </select>
+                </div>
+       </select>
+       <input type="textbox" class="form-control"   name="project_name" value="<%= records.pro_name %>" />
+       <textarea type="text" class="form-control"  row="5" name="password_details"><%= records.pass_detail %></textarea>    
+       <button>Update</button>
+          <p class="message">View all password? <a href="/allpassword">View</a></p>
+        </form>
+      </div>
+      </div>
+   
+   
+    <script>
+      $('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
+    </script>
+</body>
+</html>

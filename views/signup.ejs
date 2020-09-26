@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+      <link rel="stylesheet" href="/stylesheets/login.css"  >
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  </head>
+  <body>
+   <div class="login-page">
+      <div class="form">
+        <h1>Passwor management System</h1>
+        <h2><strong>sign up</strong></h2>
+        <% if(msg != ''){ %>
+            <div class="alert alert-success" role="alert">
+             <strong> <%= msg %></strong>
+            </div>
+            <% } %>
+            <% if(errmsg != ''){ %>
+              <div class="alert alert-danger" role="alert">
+               <strong> <%= errmsg %></strong>
+              </div>
+              <% } %>
+            
+       <form class="login-form" action="/signup" method="POST">
+       <input type="text" name="username" placeholder=" Enter your username" />
+       <input type="text" name="email" placeholder=" Enter your email"/>
+          <input type="password" name="password"  placeholder="Enter your password"/>
+          <input type="password"  name="cpassword" placeholder="Confirm password"/>
+          <button>create</button>
+          <p class="message">Already registered? <a href="/">Sign In</a></p>
+        </form>
+      </div>
+      </div>
+   
+   
+    <script>
+      $('.message a').click(function(){
+   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+});
+    </script>
+   
+  </body>
+  </html>
+  </body>
+</html>

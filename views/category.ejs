@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>category</title>
+    <link rel="stylesheet" href="/stylesheets/tabnav.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+       
+</head>
+
+<body>
+    <div class="dropdown">
+       <a href="/"> <button class="dropbtn"><i class="fa fa-home"></i></button></a>
+      </div>
+<div class="dropdown">
+    <button class="dropbtn">Password category</button>
+    <div class="dropdown-content">
+        <a href="/add-new-cat">Add category</a>
+        <a href="/category">View all category</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button class="dropbtn">Password Details</button>
+    <div class="dropdown-content">
+        <a href="/add-new-pass">Add new Password</a>
+        <a href="/allpassword">View all Password</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <a href="/logout" onclick="return confirm('Are you sure to logout?')""><button class="dropbtn"><i class="fa fa-sign-out"></i></button></a>
+  </div>
+  <table class="styled-table">
+        <thead>
+            <tr>
+                <th>category_Name</th>
+                <th>edit</th>
+                <th>delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <% records.forEach(function(row){ %>
+            <tr>
+                <td><%= row.cat_name %></td>
+               <td><a class="btn btn-primary btn-xs"  href="/category/edit/<%= row._id %>"><i class="fa fa-edit"></i></a></td>
+              <td><a  class="btn btn-danger btn-xs"  href="/category/delete/<%= row._id %>" onclick="return confirm('Are you sure?')""><i class="fa fa-trash "></i></a></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+      <% if (pana > 0) { %>
+        <ul class="pagination text-center" style="margin-left:400px; margin-top:-10px;">
+            <% if (current == 1) { %>
+                <li class="disabled"><a>First</a></li>
+            <% } else { %>
+                <li><a href="/category/1">First</a></li>
+            <% } %>
+            <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+            <% if (i !== 1) { %>
+                <li class="disabled"><a>...</a></li>
+            <% } %>
+            <% for (; i <= (Number(current) + 4) && i <= pana; i++) { %>
+                <% if (i == current) { %>
+                    <li class="active"><a><%= i %></a></li>
+                <% } else { %>
+                    <li><a href="/category/<%= i %>"><%= i %></a></li>
+                <% } %>
+                <% if (i == Number(current) + 4 && i < pana) { %>
+                    <li class="disabled"><a>...</a></li>
+                <% } %>
+            <% } %>
+            <% if (current == pana) { %>
+                <li class="disabled"><a>Last</a></li>
+            <% } else { %>
+                <li><a href="/category/<%= pana %>">Last</a></li>
+            <% } %>
+        </ul>
+    <% } %>
+      
+</body>
+</html>
+
+      
+       
